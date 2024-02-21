@@ -1,0 +1,11 @@
+.maincontent{
+    padding-top: 0%;
+    padding-left:0%;
+}
+
+
+.imgrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
