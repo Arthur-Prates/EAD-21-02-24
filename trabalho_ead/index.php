@@ -19,8 +19,8 @@ include_once './funcao/funcoes.php';
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body class="bg-dark">
-    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+<body class="bg-black">
+    <nav class="navbar navbar-expand-lg bg-black border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid grow">
             <a class="navbar-brand grow" href="index.php"><img src="./img/logo2.jpg" width="50px"></a>
             <button class="navbar-toggler grow" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,29 +38,28 @@ include_once './funcao/funcoes.php';
             </div>
         </div>
     </nav>
-    <div class="container hBody text-white text-center position-relative">
+    <div class="fundo">
 
-        
-        <div class="position-absolute top-50 start-50 translate-middle">
-        <div class="fs-3">Suas músicas favoritas direto no Spotify <i class="bi bi-spotify corSpotify text-success"></i></div>
-            <div class="card bg-dark tamanhoCard mt-3">
-                <div class="card-body text-white">
-                    <form action="musicaspotify.php" method="get" id="frmMusic" class="d-flex text-white">
-                        <input class="form-control me-2 bg-dark text-white" type="search" name="musica" id="musica" placeholder="Buscar" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
-                    </form>
-                </div>
+        <div class="container-fluid hBody text-white text-center position-relative">
+            <div class="position-absolute top-50 start-50 translate-middle text-center">
+                <!-- <div class="fs-3 text-black">Suas músicas favoritas direto no Spotify <i class="bi bi-spotify corSpotify text-success"></i></div> -->
+                <form action="musicaspotify.php" method="get" id="frmMusic">
+                    <div class="search-box active">
+                        <input type="text" placeholder="Pesquise uma música" class="active" name="musica" required="required">
+                        <button type="submit" class="btn">
+                            <div class="search-icon active">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid bg-black">
         <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
-            <div class="col mb-3">
-                <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
+            <div class="col mb-3 text-center">
+                <img src="./img/logo.jpg" alt="" width="50%">
                 <p class="text-white">© PNEAD 2024, todos os direitos reservados.</p>
             </div>
 

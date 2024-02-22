@@ -3,18 +3,15 @@ include_once './config/constantes.php';
 include_once './config/conexao.php';
 include_once './funcao/funcoes.php';
 
-if (isset($_GET['musica']) && !empty($_GET['musica'])) {
-    $pesquisa = $_GET['musica'];
+if (isset($_GET['idAlbum']) && !empty($_GET['idAlbum'])) {
+    $idAlbum = $_GET['idAlbum'];
 }
 
-$pesquisaStr = str_replace(' ', '%20', $pesquisa);
-
-$_SESSION['pesquisa'] = $pesquisa;
 
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-    CURLOPT_URL => "https://spotify174.p.rapidapi.com/?trek=$pesquisaStr&limit=12&count_code=UZ&offset=10",
+    CURLOPT_URL => "https://spotify81.p.rapidapi.com/albums?ids=$idAlbum",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -22,7 +19,7 @@ curl_setopt_array($curl, [
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => [
-        "X-RapidAPI-Host: spotify174.p.rapidapi.com",
+        "X-RapidAPI-Host: spotify81.p.rapidapi.com",
         "X-RapidAPI-Key: f3697056c6mshf507cf0d38f0a8fp1108c4jsne9c8b282ba8b"
     ],
 ]);
@@ -38,47 +35,11 @@ if ($err) {
     //echo $response;
 }
 
-$musica = json_decode($response, true);
+$album = json_decode($response, true);
 
-//--------------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------------
-
-$curl = curl_init();
-
-curl_setopt_array($curl, [
-    CURLOPT_URL => "https://spotify23.p.rapidapi.com/search/?q=$pesquisaStr&type=multi&offset=0&limit=12&numberOfTopResults=5",
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "GET",
-    CURLOPT_HTTPHEADER => [
-        "X-RapidAPI-Host: spotify23.p.rapidapi.com",
-        "X-RapidAPI-Key: f3697056c6mshf507cf0d38f0a8fp1108c4jsne9c8b282ba8b"
-    ],
-]);
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-    echo "cURL Error #:" . $err;
-} else {
-    //echo $response;
-}
-
-
-$musica2 = json_decode($response, true);
-
-// echo "<pre class='text-white'>";
-// print_r($musica2);
-// echo "</pre>";
-
-
+// echo '<pre>';
+// print_r($album);
+// echo '</pre>'
 ?>
 
 <!DOCTYPE html>
@@ -95,7 +56,7 @@ $musica2 = json_decode($response, true);
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body class="bg-black">
+<body class="bg-black text-white">
     <nav class="navbar navbar-expand-lg bg-black border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="./img/logo2.jpg" width="50px"></a>
@@ -110,87 +71,85 @@ $musica2 = json_decode($response, true);
                 </ul>
                 <form action="musicaspotify.php" method="get" id="frmMusic" class="d-flex">
                     <input class="form-control me-2" type="search" name="musica" id="musica" placeholder="Buscar" aria-label="Search" required="required">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                 </form>
             </div>
         </div>
     </nav>
-    <div class="container text-white">
-        <div class="text-white fs-3 mt-2 mb-3">
-            <?php
-            if ($pesquisa != null) {
-                if ($musica != null) {
-            ?>
-                    Exibindo resultados da busca por <b><?php echo $pesquisa; ?></b>
-        </div>
-        <div class="row">
-            <div class="fs-4 mb-2">
-                Músicas
-            </div>
-            <?php
-                    foreach ($musica['result'] as $music) {
-            ?>
-                <div class="col-lg-2 col-md-3 col-sm-6 mt-2">
-                    <div class="card bg-dark text-white">
-                        <img src="<?php echo $music['image']; ?>" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $music['name']; ?></h5>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item bg-dark text-white"><?php echo $music['artist']; ?></li>
-                        </ul>
-                        <div class="card-footer text-center align-middle">
-                            <a href="<?php echo $music['link']; ?>" target="_blank" class="btn btn-success d-flex aling-items-center justify-content-center">Spotify <i class="bi bi-spotify fs-5"></i></a>
-                        </div>
-                    </div>
-                </div>
-            <?php
-                    }
-            ?>
-        </div>
+    <div class="container">
         <div class="row mt-5">
-            <div class="fs-4 mb-2">
-                Álbuns
+            <div class="col-lg-4 col-sm-12">
+                <?php
+                foreach ($album['albums'] as $albumItem) {
+                    //echo $albumItem['artists']['0']['name'];
+                ?>
+                    <img src="<?php echo $albumItem['images']['1']['url']; ?>" alt="" class="img-fluid rounded-circle">
             </div>
-            <?php
-                    $i = 0;
-                    foreach ($musica2['albums']['items'] as $albuns) {
-                        if ($i == 6) {
-                            //echo $i;
-                            break;
-                        }
-                        $id = $albuns['data']['uri'];
-                        $idstr = str_replace('spotify:album:', '', $id);
-                        //echo $idstr;
-            ?>
-                <div class="col-lg-2 col-md-3 col-sm-6 mt-2">
-                    <div class="card bg-dark text-white">
-                        <img src="<?php echo $albuns['data']['coverArt']['sources']['0']['url']; ?>" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $albuns['data']['name']; ?></h5>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item bg-dark text-white"><?php echo $albuns['data']['artists']['items']['0']['profile']['name']; ?></li>
-                        </ul>
-                        <div class="card-footer text-center align-middle">
-                            <form action="album.php" method="get" name="frmIDAlbum">
-                                <input type="text" value="<?php echo $idstr; ?>" name="idAlbum" hidden>
-                                <button type="submit" class="btn btn-success">Ver álbum</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-    <?php
+            <div class="col-lg-8 col-sm-12">
+                <p class="fs-4">
+                    <?php echo $albumItem['name'] ?>
+                </p>
+                <p>
+                    <?php echo $albumItem['artists']['0']['name']; ?>
+                </p>
 
-                        $i++;
-                    }
+                <p>
+                    Data de lançamento: <?php
+                                        $dataLancamento = $albumItem['release_date'];
+                                        $data = implode("/", array_reverse(explode("-", $dataLancamento)));
+
+                                        echo $data; ?>
+                </p>
+                <p>
+                    Produtora: <?php echo $albumItem['label'] ?>
+                </p>
+                <p>
+                    Quantidade de músicas no álbum: <?php echo $albumItem['total_tracks'] ;
+                    $total = $albumItem['total_tracks'];
+                    ?>
+                </p>
+                <div class="d-flex justify-content-end">
+                    <a href="<?php echo $albumItem['external_urls']['spotify'] ?>" target="_blank" class="btn btn-success d-flex aling-items-center justify-content-center">Ouvir no Spotify</a>
+                </div>
+            <?php
                 }
-            } else {
-                echo 'Nenhum resultado encontrado! Verifique se digitou corretamente.';
-            }
-    ?>
+            ?>
+            </div>
+
         </div>
+        <hr>
+        <div class="row mt-3">
+            <div class="mb-4">Músicas</div>
+            <div class="col-lg-12">
+                <?php
+                $i = 0;
+                while ($i <= $total){
+                    if($i == $total){
+                        break;
+                    }
+                    
+                foreach ($album['albums'] as $track) {
+                    
+                ?>
+                    <div>
+                        <?php echo $track['tracks']['items'][$i]['track_number']; ?>  
+                        <?php echo $track['tracks']['items'][$i]['name']; ?>
+                    </div>
+                    <hr>
+           
+        <?php
+                    $i++;
+                    //echo $i;
+                }
+            }
+        ?>
+         </div>
+        </div>
+
+        <!-- Container -->
     </div>
+
+
     <div class="container-fluid bg-black">
         <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
             <div class="col mb-3 text-center">

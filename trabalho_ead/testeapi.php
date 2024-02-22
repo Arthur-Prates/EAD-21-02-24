@@ -77,7 +77,7 @@ echo "</pre>";
                 </ul>
                 <form action="testeapi.php" method="get" id="frmMusic" class="d-flex">
                     <input class="form-control me-2" type="search" name="musica" id="musica" placeholder="Buscar" aria-label="Search" required="required">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                 </form>
             </div>
         </div>
@@ -90,7 +90,7 @@ echo "</pre>";
             ?>
                     Exibindo resultados da busca por <b><?php echo $pesquisa; ?></b>
         </div>
-        <!-- <div class="row">
+         <!-- <div class="row">
             <div class="fs-5">
                 Músicas
             </div>
@@ -104,15 +104,15 @@ echo "</pre>";
             ?>
                 <div class="col-lg-2 col-md-3 col-sm-6 mt-2">
                     <div class="card bg-dark text-white">
-                        <img src="<?php// echo $music['data']['albumOfTrack']['coverArt']['sources']['0']['url']; ?>" class="card-img-top" alt="...">
+                        <img src="<?php //echo $music['data']['albumOfTrack']['coverArt']['sources']['0']['url']; ?>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title"><?php //echo $music['data']['name']; ?></h5>
+                            <h5 class="card-title"><?// echo $music['data']['name']; ?></h5>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item bg-dark text-white"><?php //echo $music['data']['artists']['items']['0']['profile']['name']; ?></li>
+                            <li class="list-group-item bg-dark text-white"><?// echo $music['data']['artists']['items']['0']['profile']['name']; ?></li>
                         </ul>
                         <div class="card-footer text-center align-middle">
-                            <a href="<?php //echo $music['link']; ?>" class="btn btn-success d-flex aling-items-center justify-content-center">Spotify <i class="bi bi-spotify fs-5"></i></a>
+                            <a href="<?// echo $music['link']; ?>" class="btn btn-success d-flex aling-items-center justify-content-center">Spotify <i class="bi bi-spotify fs-5"></i></a>
                         </div>
                     </div>
                 </div>
@@ -129,15 +129,18 @@ echo "</pre>";
             </div>
             <?php
                     $i = 0;
-                    foreach ($musica['tracks']['items'] as $music) {
+                    foreach ($musica['albums']['items'] as $music) {
                         if ($i == 6) {
                             //echo $i;
                             break;
                         }
+                        $id = $music['data']['uri'];
+                        $idstr = str_replace('spotify:album:','',$id);
+                       // echo $idstr;
             ?>
                 <div class="col-lg-2 col-md-3 col-sm-6 mt-2">
                     <div class="card bg-dark text-white">
-                        <img src="<?php echo $music['data']['albumOfTrack']['coverArt']['sources']['0']['url']; ?>" class="card-img-top" alt="...">
+                        <img src="<?php echo $music['data']['coverArt']['sources']['0']['url']; ?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $music['data']['name']; ?></h5>
                         </div>
@@ -145,7 +148,10 @@ echo "</pre>";
                             <li class="list-group-item bg-dark text-white"><?php echo $music['data']['artists']['items']['0']['profile']['name']; ?></li>
                         </ul>
                         <div class="card-footer text-center align-middle">
-                            <a href="<?php echo $music['data']['albumOfTrack']['sharingInfo']['shareUrl']; ?>" class="btn btn-success d-flex aling-items-center justify-content-center">Spotify <i class="bi bi-spotify fs-5"></i></a>
+                            <form action="album.php" method="get" name="frmIDAlbum">
+                                <input type="text" value="<?php echo $idstr; ?>" name="idAlbum" hidden>
+                                <button type="submit" class="btn btn-success">Ver álbum</button>
+                            </form>
                         </div>
                     </div>
                 </div>
