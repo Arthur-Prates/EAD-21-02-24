@@ -11,11 +11,15 @@
 <div class="text-center">
     <form action="#" method="post" name="formLogin" id="formLogin">
         <h1>Atualize a pagina e espere, pode demorar um pouco.</h1>
-        <div id="texto" name="texto" class="bg-dark text-light p-3 m-5"></div>
+        <div id="texto" name="texto" class="bg-dark text-light p-3 m-5">
+          <h3> Site Usado https://thedogapi.com/</h3>
+        </div>
         <div class="container">
 
         <div class="maincontent">
-            <div id="grid" class="imgrid row d-flex justify-content-center aling-items-center"></div>
+            <div id="grid" class="imgrid row d-flex justify-content-center aling-items-center">
+
+            </div>
         </div>
         </div>
 

@@ -1,5 +1,5 @@
 
-const url = `https://api.thedogapi.com/v1/images/search?limit=30`;
+const url = `https://api.thedogapi.com/v1/images/search?limit=10`;
 const api_key = 'live_ep6ec38kvxos48aK6AUl9bF9IeFrw54hl1XuJkwglcoAugHCv3ZxoGAEdZiFlQwD'
 
 fetch(url, {
@@ -7,9 +7,7 @@ fetch(url, {
         'x-api-key': api_key
     }
 })
-    .then((response) => {
-        return response.json();
-    })
+    .then(response => response.json())
     .then((data) => {
         let imagesData = data;
         imagesData.map(function (imageData) {
