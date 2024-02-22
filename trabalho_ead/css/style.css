@@ -1,0 +1,16 @@
+.card{
+    height: 100%;
+}
+.hBody{
+    height: 700px;
+}
+.corSpotify{
+    color: rgb(20, 231, 20);
+}
+
+.tamanhoCard{
+    max-width: 500px;
+}
+.grow{
+    flex-grow: 0.5;
+}
