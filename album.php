@@ -7,6 +7,7 @@ if (isset($_GET['idAlbum']) && !empty($_GET['idAlbum'])) {
     $idAlbum = $_GET['idAlbum'];
 }
 
+$pesquisa = $_SESSION['pesquisa'];
 
 $curl = curl_init();
 
