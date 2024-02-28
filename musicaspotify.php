@@ -101,7 +101,7 @@ $musica2 = json_decode($response, true);
 <body class="bg-black">
 <nav class="navbar navbar-expand-lg bg-black border-bottom border-body" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="./img/logo2.jpg" width="50px"></a>
+        <a class="navbar-brand" href="#"><img src="./img/iconlogo.png" width="50px"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -119,9 +119,9 @@ $musica2 = json_decode($response, true);
                 </li>
             </ul>
             <form action="musicaspotify.php" method="get" id="frmMusic" class="d-flex">
-                <input class="form-control me-2" type="search" name="musica" id="musica" placeholder="Buscar"
+                <input class="form-control me-2 bg-black" type="search" name="musica" id="musica" placeholder="Buscar"
                        aria-label="Search" required="required">
-                <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+                <button class="btn btn-outline-success " type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>
     </div>
