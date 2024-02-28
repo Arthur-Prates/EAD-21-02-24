@@ -16,11 +16,11 @@
             <div class="col-6 col-md-2 mb-3 text-center">
                 <h5>Ritmos</h5>
                 <ul class="nav flex-column text-white">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Sertanejo</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Gospel</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Rap</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Eletrônica</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Rock</a></li>
+                    <li class="nav-item mb-2"><a href="musicaspotify.php?musica=Sertanejo" class="nav-link p-0 text-white">Sertanejo</a></li>
+                    <li class="nav-item mb-2"><a href="musicaspotify.php?musica=Gospel" class="nav-link p-0 text-white">Gospel</a></li>
+                    <li class="nav-item mb-2"><a href="musicaspotify.php?musica=Rap" class="nav-link p-0 text-white">Rap</a></li>
+                    <li class="nav-item mb-2"><a href="musicaspotify.php?musica=Eletrônica" class="nav-link p-0 text-white">Eletrônica</a></li>
+                    <li class="nav-item mb-2"><a href="musicaspotify.php?musica=Rock" class="nav-link p-0 text-white">Rock</a></li>
                 </ul>
             </div>
 
