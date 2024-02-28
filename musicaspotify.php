@@ -121,7 +121,7 @@ $musica2 = json_decode($response, true);
             <form action="musicaspotify.php" method="get" id="frmMusic" class="d-flex">
                 <input class="form-control me-2" type="search" name="musica" id="musica" placeholder="Buscar"
                        aria-label="Search" required="required">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>
     </div>
@@ -129,8 +129,8 @@ $musica2 = json_decode($response, true);
 <div class="container text-white">
     <div class="text-white fs-3 mt-2 mb-3">
         <?php
-        if ($pesquisa != null) {
-        if ($musica != null) {
+        if ($pesquisa !== null) {
+        if ($musica !== null) {
         ?>
         Exibindo resultados da busca por <b><?php echo $pesquisa; ?></b>
     </div>
@@ -141,7 +141,7 @@ $musica2 = json_decode($response, true);
         <?php
         foreach ($musica['result'] as $music) {
             ?>
-            <div class="col-lg-2 col-md-3 col-sm-6 mt-2">
+            <div class="col-lg-2 col-md-4 col-6 mt-2">
                 <div class="card bg-dark text-white">
                     <img src="<?php echo $music['image']; ?>" class="card-img-top" alt="...">
                     <div class="card-body text-center">
@@ -152,7 +152,7 @@ $musica2 = json_decode($response, true);
                     </ul>
                     <div class="card-footer text-center align-middle">
                         <a href="<?php echo $music['link']; ?>" target="_blank"
-                           class="btn btn-success d-flex aling-items-center justify-content-center">Spotify <i
+                           class="btn corSpotify d-flex aling-items-center justify-content-center">Spotify <i
                                     class="bi bi-spotify fs-5"></i></a>
                     </div>
                 </div>
@@ -176,7 +176,7 @@ $musica2 = json_decode($response, true);
             $idstr = str_replace('spotify:album:', '', $id);
             //echo $idstr;
             ?>
-            <div class="col-lg-2 col-md-3 col-sm-6 mt-2">
+            <div class="col-lg-2 col-md-4 col-6 mt-2">
                 <div class="card bg-dark text-white">
                     <img src="<?php echo $albuns['data']['coverArt']['sources']['0']['url']; ?>" class="card-img-top"
                          alt="...">
@@ -184,12 +184,12 @@ $musica2 = json_decode($response, true);
                         <h5 class="card-title"><?php echo $albuns['data']['name']; ?></h5>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item bg-dark text-white"><?php echo $albuns['data']['artists']['items']['0']['profile']['name']; ?></li>
+                        <li class="list-group-item bg-dark text-white text-center"><?php echo $albuns['data']['artists']['items']['0']['profile']['name']; ?></li>
                     </ul>
                     <div class="card-footer text-center align-middle">
                         <form action="album.php" method="get" name="frmIDAlbum">
                             <input type="text" value="<?php echo $idstr; ?>" name="idAlbum" hidden>
-                            <button type="submit" class="btn btn-success">Ver álbum</button>
+                            <button type="submit" class="btn corzinhaSpotify">Ver álbum</button>
                         </form>
                     </div>
                 </div>
@@ -205,51 +205,49 @@ $musica2 = json_decode($response, true);
         ?>
     </div>
 </div>
-<div class="container-fluid bg-black">
-    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
-        <div class="col mb-3 text-center">
-            <img src="./img/logo.jpg" alt="" width="50%">
-            <p class="text-white">© PNEAD 2024, todos os direitos reservados.</p>
+<div class="container">
+    <footer class="py-5">
+        <div class="row">
+            <div class="col-6 col-md-2 mb-3 text-center">
+                <h5>PNEAD</h5>
+                <ul class="nav flex-column text-white">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Termos de Serviço</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Política de Privacidade</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Sobre nós</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">S.A.C</a></li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3 text-center">
+                <h5>Ritmos</h5>
+                <ul class="nav flex-column text-white">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Sertanejo</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Gospel</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Rap</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Eletrônica</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Rock</a></li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+
+            </div>
+
+            <div class="col-md-5 offset-md-1 mb-3 text-center">
+                <img src="./img/logo.jpg" alt="" width="50%">
+            </div>
         </div>
 
-        <div class="col mb-3">
-
-        </div>
-        <div class="col mb-3 text-white">
-            <!-- <h5>Section</h5>
-            <ul class="nav flex-column text-white">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
-            </ul> -->
-        </div>
-
-        <div class="col mb-3 text-white">
-            <h5>PNEAD</h5>
-            <ul class="nav flex-column text-white">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Termos de Serviço</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Política de Privacidade</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Sobre nós</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">S.A.C</a></li>
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>© PNEAD 2024, todos os direitos reservados.</p>
+            <ul class="list-unstyled d-flex text-white">
+                <li class="ms-3"><i class="bi bi-twitter-x"></i></li>
+                <li class="ms-3"><i class="bi bi-instagram"></i></li>
+                <li class="ms-3"><i class="bi bi-threads"></i></li>
             </ul>
         </div>
-
-        <div class="col mb-3 text-white">
-            <h5>Ritmos</h5>
-            <ul class="nav flex-column text-white">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Sertanejo</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Gospel</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Rap</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Eletrônica</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Rock</a></li>
-            </ul>
-        </div>
-
     </footer>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

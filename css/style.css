@@ -1,6 +1,6 @@
-.maincontent{
+.maincontent {
     padding-top: 0%;
-    padding-left:0%;
+    padding-left: 0%;
 }
 
 
@@ -82,7 +82,7 @@
     line-height: 50px;
     width: 50px;
     font-size: 20px;
-    background: #038f2f;
+    background: #24ce5f;
     color: #fff;
     transform: translateY(-50%) rotate(360deg);
 }
@@ -120,11 +120,32 @@
 }
 
 .hBody {
-    height: 800px;
+
+}
+
+.corzinhaSpotify {
+    background-color: #24ce5f;
+    color: white;
+}
+
+.corzinhaSpotify:hover {
+    background-color: #24ce5f;
+    color: white;
+    scale: 1.04;
+    transition: 0.8s;
 }
 
 .corSpotify {
-    color: rgb(20, 231, 20);
+    background-color: #24ce5f;
+    color: white;
+    align-items: center;
+    display: flex;
+}
+
+.corSpotify:hover {
+    background-color: #24ce5f;
+    scale: 1.04;
+    transition: 0.8s;
 }
 
 .grow {
@@ -132,14 +153,141 @@
 }
 
 .fundo {
-    background: url(../img/imgBody3.jpg);
+    background: url(../img/wallpaper.gif);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: cover;
-    filter: blur(50);
+    position: center;
+    width: 100%;
+    height: 900px;
 }
 
-.hov:hover{
+@media (max-width: 649px) {
+    .fundo {
+        background: url(../img/wallpaper2.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: cover;
+        position: center;
+        width: 100%;
+        height: 800px;
+    }
+
+    .barraPesquisa {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+    }
+}
+
+@media (min-width: 650px) {
+    .fundo {
+        background: url(../img/wallpaper3.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: cover;
+        position: center;
+        width: 100%;
+        height: 900px;
+    }
+
+    .barraPesquisa {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+    }
+}
+
+@media (min-width: 850px) {
+    .fundo {
+        background: url(../img/wallpaper4.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: cover;
+        position: center;
+        width: 100%;
+        height: 900px;
+    }
+
+    .barraPesquisa {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .fundo {
+        background: url(../img/wallpaper5.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: cover;
+        position: center;
+        width: 100%;
+        height: 800px;
+    }
+
+    .barraPesquisa {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .fundo {
+        background: url(../img/wallpaper.gif);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: cover;
+        position: center;
+        width: 100%;
+        height: 800px;
+    }
+
+    .barraPesquisa {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 600px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .imgAlbum {
+        text-align: center;
+        border-radius: 10px;
+
+    }
+
+    .txtAlbum {
+        text-align: center;
+    }
+}
+.imgAlbum{
+    border-radius: 100%;
+}
+
+
+.texto {
+    color: white;
+    font-family: "Calibri Light";
+    font-size: 40px;
+}
+
+
+.hov:hover {
     transition: all 0.2s ease-in-out;
     box-shadow: #fff 0 0 20px;
+}
+
+.barraPesquisa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
 }
